@@ -13,10 +13,10 @@ Therefore I started to write a small Groovy script to inject the cover into the 
 Afterwards, I got other requirements and I wrote a new version in Java that uses the "jaudiotagger" library. The enty point of this programm is net.nino.ipodformat.Launcher.
 
 It :
-- remove empty dirs
-- inject the cover as id3 tag
-- delete non-mp3 files
-- inject a special tag from Itunes for compilation albums, i.e. albums with multiple artists.
+- removes empty dirs
+- injects the cover as id3 tag
+- deletes non-mp3 files
+- injects a special tag from Itunes for compilation albums, i.e. albums with multiple artists.
 
 I leave this code for the posterity.
 Please note that it's pretty old so I won't develop it anymore (I broke the Ipod anyway :0)).
