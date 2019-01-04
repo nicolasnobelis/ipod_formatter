@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+  <bean id="ruleEngine" class="net.nino.ipodformat.rules.RuleEngine">
+    <property name="rules">
+      <util:set>  <!--order is not important : it will be sorted per runLevel in the RuleEngine-->
+        <bean class="net.nino.ipodformat.rules.InjectCover">
+          <property name="runLevel" value="20"/>
+          <property name="coverFileExpr" value="^Cover.(jpg|jpeg|png|gif)$"/>
+          <property name="audioFilesExt" value=".mp3"/>
+        </bean>
+        <bean class="net.nino.ipodformat.rules.ItunesCompilation">
+          <property name="runLevel" value="21"/>
+          <property name="tagFileExpr" value="^Compilation.tag$"/>
+          <property name="audioFilesExt" value=".mp3"/>
+        </bean>
+        <bean class="net.nino.ipodformat.rules.DeleteFiles">
+          <property name="runLevel" value="80"/>
+          <property name="deletedFilesExpr" value="^.*\.(?!mp3)\w*$"/>
+        </bean>
+        <bean class="net.nino.ipodformat.rules.DeleteEmptyDirs">
+          <property name="runLevel" value="99"/> <!--this one should always be lowest priority-->
+        </bean>
+      </util:set>
+    </property>
+
+  </bean>
+
+</beans>
